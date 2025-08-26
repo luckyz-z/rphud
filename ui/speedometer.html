@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speedometer</title>
+    <link rel="stylesheet" href="speedometer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div id="speedometer">
+        <div class="speedometer-container">
+            <div class="rpm-arc"></div>
+            <div class="rpm-fill"></div>
+            
+            <div class="fuel-arc"></div>
+            <div class="fuel-fill"></div>
+            <div class="rpm-ticks">
+                <div class="rpm-tick"></div>
+                <div class="rpm-tick"></div>
+                <div class="rpm-tick"></div>
+                <div class="rpm-tick"></div>
+                <div class="rpm-tick"></div>
+                <div class="rpm-tick"></div>
+                <div class="rpm-tick"></div>
+                <div class="rpm-tick"></div>
+                <div class="rpm-tick"></div>
+                <div class="rpm-tick"></div>
+                <div class="rpm-tick"></div>
+            </div>
+            
+            <div class="speedometer-center">
+                 <div class="speed-value" id="speed-value">0</div>
+                <div class="speed-unit">MPH</div>
+                <div class="license-plate" id="license-plate">UNKNOWN</div>
+            </div>
+            
+            <div class="speedometer-icons">
+                <div class="fuel-icon">
+                    <i class="fas fa-gas-pump"></i>
+                </div>
+                
+                <div class="rpm-icon">
+                    <i class="fas fa-tachometer-alt"></i>
+                </div>
+                
+                <div class="engine-warning" id="engine-warning">
+                    <!-- <i class="fas fa-exclamation-triangle"></i> -->
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+    
+    <script src="speedometer.js"></script>
+</body>
+</html>

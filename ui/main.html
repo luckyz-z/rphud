@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RP HUD</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: transparent;
+        }
+        
+        #hud-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: transparent;
+        }
+        
+        #speedometer-frame {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 250px;
+            height: 250px;
+            border: none;
+            background: transparent;
+            z-index: 2000;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <iframe id="hud-frame" src="index.html"></iframe>
+    <iframe id="speedometer-frame" src="speedometer.html"></iframe>
+    
+    <script>
+        const hudFrame = document.getElementById('hud-frame');
+        const speedometerFrame = document.getElementById('speedometer-frame');
+        
+        window.addEventListener('message', function(event) {
+            const data = event.data;
+            
+            switch(data.action) {
+                case 'switchHudStyle':
+                    if (data.style === 'new') {
+                        hudFrame.src = 'new.html';
+                    } else {
+                        hudFrame.src = 'index.html';
+                    }
+                    
+                    hudFrame.onload = function() {
+                        hudFrame.contentWindow.postMessage({
+                            action: 'updateAccentColor',
+                            accentColor: data.accentColor
+                        }, '*');
+                    };
+                    break;
+                    
+                case 'updateSpeedometer':
+                    speedometerFrame.contentWindow.postMessage({
+                        action: 'updateSpeedometer',
+                        data: data.data
+                    }, '*');
+                    break;
+                    
+                case 'toggleSpeedometer':
+                    if (speedometerFrame.style.display === 'none') {
+                        speedometerFrame.style.display = 'block';
+                    } else {
+                        speedometerFrame.style.display = 'none';
+                    }
+                    break;
+                    
+                case 'initSpeedometer':
+                    speedometerFrame.style.display = 'block';
+                    break;
+                    
+                default:
+                    hudFrame.contentWindow.postMessage(data, '*');
+                    break;
+            }
+        });
+        
+        window.addEventListener('message', function(event) {
+            if (event.source === hudFrame.contentWindow) {
+                if (event.data.action === 'updateSpeedometer' || event.data.action === 'toggleSpeedometer') {
+                    speedometerFrame.contentWindow.postMessage(event.data, '*');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RP HUD - New Style</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="new.css">
+</head>
+<body>
+    <div id="hud-container">
+        <div id="map-border"></div>
+        
+        <div id="map-header" class="hud-box">
+            <span class="player-id">ID: <span id="player-id" class="id-number accent-color">0</span></span>
+            <span class="discord-link">discord.gg/<span id="discord-invite" class="discord-highlight accent-color">vmenu</span></span>
+            <span id="current-time" class="time-display accent-color">00:00:00</span>
+        </div>
+        
+        <div id="location-display" class="hud-box">
+            <span id="location-text" class="accent-color">(<span id="new-direction">N</span>) <span id="new-street">Unknown Street</span> (<span id="new-postal">000</span>)</span>
+        </div>
+
+        <div id="status-icons">
+            <div class="status-icon-box hud-box">
+                <div class="health-fill"></div>
+                <i class="fas fa-heart" id="health-icon"></i>
+            </div>
+            <div class="status-icon-box hud-box">
+                <i class="fas fa-microphone" id="mic-icon"></i>
+            </div>
+            <div class="status-icon-box hud-box">
+                <div class="armor-fill"></div>
+                <i class="fas fa-shield-alt" id="armor-icon"></i>
+            </div>
+        </div>
+
+        <div id="server-info">
+            <div class="info-box hud-box">
+                <span id="new-player-name" class="accent-color">Player</span>
+                <span class="headtag-separator"> | Headtag: </span>
+                <span id="headtag-value" class="info-value accent-color">Civilian</span>
+            </div>
+            
+            <div class="info-box hud-box">
+                <span class="info-label">Priority:</span>
+                <span class="priority-values">
+                    <span class="bc-status">BC: <span class="priority-status accent-color">N/A</span></span>
+                    <span class="priority-separator">|</span>
+                    <span class="ls-status">LS: <span class="priority-status accent-color">N/A</span></span>
+                </span>
+            </div>
+            
+            <div class="info-box hud-box">
+                <span class="info-label">AOP:</span>
+                <span id="aop-value" class="info-value aop-yellow accent-color">Sandy Shores</span>
+                <span class="priority-separator">|</span>
+                <span class="info-label">PT:</span>
+                <span id="peacetime-value" class="info-value pt-red accent-color">Disabled</span>
+            </div>
+            
+            <div class="info-box hud-box timestamp-box">
+                <span id="timestamp" class="timestamp-purple accent-color">08/18/25 | 03:47:39 PM CET</span>
+            </div>
+        </div>
+
+    
+    </div>
+
+    <script src="new.js"></script>
+</body>
+</html>

@@ -1,0 +1,392 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --accent-color: #ffffff;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 900;
+  background: transparent;
+  overflow: hidden;
+  user-select: none;
+  font-size: 16px;
+}
+
+* {
+  font-weight: 900 !important;
+}
+
+#hud-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+#map-border {
+  position: absolute;
+  border: 3px solid rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  pointer-events: none;
+  z-index: 999;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+#location-info {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 15px;
+  z-index: 1001;
+}
+
+.location-box {
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.location-box i {
+  font-size: 14px;
+  color: var(--accent-color);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.location-box span {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent-color);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+#health-armor-container {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    align-items: center;
+}
+
+.health-section, .armor-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.health-icon, .armor-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  margin-right: 8px;
+}
+
+.health-icon {
+  color: #ff4757;
+}
+
+.armor-icon {
+  color: #74b9ff;
+}
+
+.health-bar, .armor-bar {
+  width: 85px;
+  height: 12px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.health-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff4757, #ff6b7a);
+  border-radius: 3px;
+  width: var(--health-width, 100%);
+  transition: width 0.3s ease;
+}
+
+.armor-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #74b9ff, #0984e3);
+  border-radius: 3px;
+  width: var(--armor-width, 100%);
+  transition: width 0.3s ease;
+}
+
+#player-info {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.player-id {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+#player-id {
+  color: #74b9ff;
+}
+
+.status-bars {
+  display: flex;
+  gap: 12px;
+}
+
+.stamina-container, .voice-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.stamina-icon, .voice-icon {
+  font-size: 12px;
+  color: #ffffff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.stamina-icon {
+  color: #4a90e2;
+}
+
+.voice-icon {
+  color: #2ed573;
+}
+
+.stamina-bar, .voice-bar {
+  width: 8px;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.stamina-fill {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(180deg, #4a90e2, #74b9ff);
+  border-radius: 4px;
+  transition: height 0.3s ease;
+  height: 100%;
+}
+
+.stamina-fill.low-stamina {
+  background: linear-gradient(180deg, #ff4757, #ff6b7a);
+  animation: pulse 1s infinite;
+}
+
+.voice-fill {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(180deg, #2ed573, #00b894);
+  border-radius: 4px;
+  transition: height 0.3s ease;
+  height: 0%;
+}
+
+.voice-fill.talking {
+  animation: pulse 0.8s infinite;
+  background: linear-gradient(180deg, #fdcb6e, #e17055);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+#server-info {
+  position: absolute;
+  min-width: 320px;
+}
+
+.info-line {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.info-line:last-child {
+  margin-bottom: 0;
+}
+
+.info-label {
+  color: #ffffff !important;
+  margin-right: 8px;
+  font-weight: 500;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.info-value {
+  color: #ffffff;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.accent-color {
+  color: var(--accent-color, #ffffff);
+}
+
+.headtag-line .info-value {
+  color: #a29bfe;
+}
+
+.headtag-separator {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 400;
+}
+
+.discord-line .info-value {
+  color: #74b9ff;
+}
+
+.priority-pills {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bc-pill, .ls-pill {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  color: #ffffff;
+}
+
+.priority-separator {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.priority-status {
+  color: #2ed573;
+}
+
+.info-separator {
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0 8px;
+}
+
+.peacetime-enabled {
+  color: var(--accent-color, #ff4757) !important;
+}
+
+.peacetime-disabled {
+  color: var(--accent-color, #2ed573) !important;
+}
+
+.timestamp {
+  color: var(--accent-color, #ffffff);
+  font-size: 12px;
+  font-weight: 400;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+
+@media (max-width: 1920px) {
+  #hud-container {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 1600px) {
+  #hud-container {
+    transform: scale(0.9);
+    transform-origin: top left;
+  }
+  
+  #server-info {
+    min-width: 300px;
+  }
+}
+
+@media (max-width: 1366px) {
+  #hud-container {
+    transform: scale(0.85);
+    transform-origin: top left;
+  }
+  
+  #server-info {
+    min-width: 280px;
+  }
+  
+  .info-line {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 1024px) {
+  #hud-container {
+    transform: scale(0.8);
+    transform-origin: top left;
+  }
+  
+  #server-info {
+    min-width: 240px;
+  }
+  
+  .info-line {
+    font-size: 11px;
+  }
+  
+  #vehicle-hud {
+    bottom: 10px;
+    right: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  #hud-container {
+    transform: scale(0.7);
+    transform-origin: top left;
+  }
+  
+  #server-info {
+    min-width: 200px;
+  }
+  
+  .info-line {
+    font-size: 10px;
+  }
+}
+
+#player-info, #server-info, #health-armor-container {
+  max-width: calc(100vw - 20px);
+  overflow: hidden;
+}
+
+.positioned-element {
+  max-width: calc(100vw - 20px) !important;
+  max-height: calc(100vh - 20px) !important;
+}

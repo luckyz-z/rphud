@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+#speedometer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 200px;
+  height: 200px;
+  display: none;
+  z-index: 1000;
+  font-family: 'Inter', sans-serif;
+}
+
+#speedometer.visible {
+  display: block;
+}
+
+.speedometer-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.speedometer-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+}
+
+
+
+.speed-value {
+  font-size: 52px;
+  font-weight: 900;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  line-height: 1;
+  margin: 15px 0 5px 0;
+  letter-spacing: -2px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.speed-unit {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 900;
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.license-plate {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 900;
+  font-family: 'Inter', sans-serif;
+  margin-top: 8px;
+  letter-spacing: 0.5px;
+}
+
+.rpm-arc {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  width: calc(100% + 16px);
+  height: calc(100% + 16px);
+  border-radius: 50%;
+  border: 4px solid transparent;
+  border-right: 4px solid rgba(255, 255, 255, 0.3);
+  transform: rotate(0deg);
+  opacity: 1;
+  clip-path: polygon(50% 50%, 100% 0%, 100% 50%, 100% 100%, 50% 100%);
+}
+
+.fuel-arc {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  width: calc(100% + 16px);
+  height: calc(100% + 16px);
+  border-radius: 50%;
+  border: 4px solid transparent;
+  border-left: 4px solid rgba(255, 165, 0, 0.3);
+  transform: rotate(0deg);
+  opacity: 1;
+  clip-path: polygon(50% 50%, 0% 0%, 0% 50%, 0% 100%, 50% 100%);
+}
+
+.rpm-ticks {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.rpm-tick {
+  position: absolute;
+  width: 3px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.7);
+  transform-origin: center bottom;
+  border-radius: 2px;
+}
+
+.rpm-tick:nth-child(1) { transform: rotate(-135deg) translateY(-102px); }
+.rpm-tick:nth-child(2) { transform: rotate(-120deg) translateY(-102px); }
+.rpm-tick:nth-child(3) { transform: rotate(-105deg) translateY(-102px); }
+.rpm-tick:nth-child(4) { transform: rotate(-90deg) translateY(-102px); }
+.rpm-tick:nth-child(5) { transform: rotate(-75deg) translateY(-102px); }
+.rpm-tick:nth-child(6) { transform: rotate(-60deg) translateY(-102px); }
+.rpm-tick:nth-child(7) { transform: rotate(-45deg) translateY(-102px); }
+.rpm-tick:nth-child(8) { transform: rotate(-30deg) translateY(-102px); }
+.rpm-tick:nth-child(9) { transform: rotate(-15deg) translateY(-102px); }
+.rpm-tick:nth-child(10) { transform: rotate(0deg) translateY(-102px); }
+.rpm-tick:nth-child(11) { transform: rotate(15deg) translateY(-102px); }
+
+.speedometer-icons {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.fuel-icon {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.6);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.fuel-icon.active {
+  color: #ffcc00;
+}
+
+.rpm-icon {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.6);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.rpm-icon.active {
+  color: #ffffff;
+}
+
+.engine-warning {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.6);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.engine-warning.warning {
+  color: #ff4444;
+}
+
+
+
+.rpm-fill {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  width: calc(100% + 16px);
+  height: calc(100% + 16px);
+  border-radius: 50%;
+  border: 4px solid transparent;
+  border-right: 4px solid #ffffff;
+  transform: rotate(0deg);
+  clip-path: polygon(50% 50%, 100% 0%, 100% 50%, 100% 100%, 50% 100%);
+  transition: clip-path 0.1s ease;
+}
+
+.rpm-fill.high {
+  border-right-color: #ff4444;
+}
+
+.fuel-fill {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  width: calc(100% + 16px);
+  height: calc(100% + 16px);
+  border-radius: 50%;
+  border: 4px solid transparent;
+  border-left: 4px solid #ff8800;
+  transform: rotate(0deg);
+  clip-path: polygon(50% 50%, 0% 0%, 0% 50%, 0% 100%, 50% 100%);
+  transition: clip-path 0.1s ease;
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RP HUD</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="hud-container">
+        <div id="map-border"></div>
+        
+        <div id="location-info">
+            <div class="location-box">
+                <i class="fas fa-map-marker-alt"></i>
+                <span id="postal-value" class="accent-color">000</span>
+            </div>
+            <div class="location-box">
+                <i class="fas fa-road"></i>
+                <span id="street-value" class="accent-color">Unknown Street</span>
+            </div>
+            <div class="location-box">
+                <i class="fas fa-compass"></i>
+                <span id="direction-value" class="accent-color">N</span>
+            </div>
+        </div>
+        
+        <div id="health-armor-container">
+            <div class="health-section">
+                <div class="health-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="health-bar">
+                    <div class="health-fill"></div>
+                </div>
+            </div>
+            <div class="armor-section">
+                <div class="armor-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="armor-bar">
+                    <div class="armor-fill"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="player-info">
+            <div class="player-id">ID: <span id="player-id" class="accent-color">0</span></div>
+            <div class="status-bars">
+                <div class="stamina-container">
+                    <i class="fas fa-running stamina-icon"></i>
+                    <div class="stamina-bar">
+                        <div class="stamina-fill"></div>
+                    </div>
+                </div>
+                <div class="voice-container">
+                    <i class="fas fa-microphone voice-icon"></i>
+                    <div class="voice-bar">
+                        <div class="voice-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="server-info">
+            <div class="info-line headtag-line">
+                <span id="player-name" class="accent-color">Player</span>
+                <span class="headtag-separator"> | Headtag: </span>
+                <span id="headtag-value" class="info-value accent-color">Civilian</span>
+            </div>
+            <div class="info-line discord-line">
+                <span class="info-label">Discord:</span>
+                <span id="discord-value" class="info-value accent-color">discord.gg/vmenu</span>
+            </div>
+            <div class="info-line priority-line">
+                <span class="info-label">Priority:</span>
+                <span class="priority-pills">
+                    <span class="bc-pill">BC: <span class="priority-status accent-color">N/A</span></span>
+                    <span class="priority-separator">|</span>
+                    <span class="ls-pill">LS: <span class="priority-status accent-color">N/A</span></span>
+                </span>
+            </div>
+            <div class="info-line aop-line">
+                <span class="info-label">AOP:</span>
+                <span id="aop-value" class="info-value accent-color">Sandy Shores</span>
+                <span class="info-separator">|</span>
+                <span class="info-label">PT:</span>
+                <span id="peacetime-value" class="info-value peacetime-disabled accent-color">Disabled</span>
+            </div>
+            <div class="info-line timestamp-line">
+                <span id="timestamp" class="timestamp accent-color">06/18/25 | 05:47:39 PM CET</span>
+            </div>
+        </div>
+
+    
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -154,6 +154,9 @@ For issues or feature requests, check the resource documentation or contact the 
 This resource is provided as-is for FiveM roleplay servers. Please respect the original author's work.
 
 ---
+https://i.postimg.cc/mrLggtJT/image.png
+https://i.postimg.cc/7LKYGqr0/image.png
+https://i.postimg.cc/MHQWFRMm/image.png
 
 **Version**: 2.0.0  
 **Author**: Luckyz  
